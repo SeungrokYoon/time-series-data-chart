@@ -1,3 +1,5 @@
+import { text } from 'stream/consumers'
+
 import { createGlobalStyle } from 'styled-components'
 import { reset } from 'styled-reset'
 
@@ -13,11 +15,11 @@ ${reset},
     html, body {
         height: 100%;
         font-family: 'Spoqa Han Sans Neo', 'sans-serif';
-        font-size: ${({ theme }) => theme.fontSize.default};
-        color: ${({ theme }) => theme.color.textColor};
+        font-size: 16px;
+        color: #222
     }
     body {
-        background: ${({ theme }) => theme.color.bgColor};
+        background: white
     }
     a {
         color: inherit;
