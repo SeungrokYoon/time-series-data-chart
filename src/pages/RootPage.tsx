@@ -1,6 +1,16 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { ComposedChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Area, Bar } from 'recharts'
+import {
+  ComposedChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  Area,
+  Bar,
+  Cell,
+} from 'recharts'
 import styled from 'styled-components'
 
 import CustomTooltip from '../components/CustomTooltip'
@@ -48,7 +58,7 @@ function Chart({ tabButtonKey }: { tabButtonKey: string }) {
           bottom: 20,
           left: 20,
         }}
-        width={1000}
+        width={1300}
       >
         <CartesianGrid stroke="#f5f5f5" />
         <XAxis dataKey="time" scale="band" />
@@ -65,7 +75,14 @@ function Chart({ tabButtonKey }: { tabButtonKey: string }) {
           yAxisId="Bar"
         />
         <Area dataKey="value_area" fill="#84d884" stroke="#8f9908" type="monotone" yAxisId="Area" />
-        <Bar barSize={20} dataKey="value_bar" fill="#413ea0" offset={40} yAxisId="Bar" />
+        <Bar barSize={20} dataKey="value_bar" fill="#413ea0" offset={40} yAxisId="Bar">
+          {composeChartData.map((entry, index) => {
+            const selected = entry.id === selectedButton
+            return (
+              <Cell key={`cell-${index}`} fill={entry.id === selectedButton ? 'blue' : 'yellow'} />
+            )
+          })}
+        </Bar>
         <Tooltip content={<CustomTooltip />} />
         <Legend />
       </ComposedChart>

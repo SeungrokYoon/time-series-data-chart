@@ -1,6 +1,7 @@
 import { ResDataType } from '../types/chart'
 
 interface ComposeChartAtomData {
+  id: string
   time: string
   value_area: number
   value_bar: number
