@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { ComposedChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Area, Bar } from 'recharts'
 import styled from 'styled-components'
 
+import CustomTooltip from '../components/CustomTooltip'
 import { ResDataType } from '../types/chart'
 import { getIdList, processChartDataToComposeCharData } from '../utils/processData'
 
@@ -13,6 +14,7 @@ export default function RootPage() {
 function Chart({ tabButtonKey }: { tabButtonKey: string }) {
   const [data, setData] = useState<ResDataType>({})
   const composeChartData = processChartDataToComposeCharData(data)
+
   const idArr = Array.from(new Set(getIdList(data))).sort()
 
   const [selectedButton, setSelectedButton] = useState('')
@@ -64,7 +66,7 @@ function Chart({ tabButtonKey }: { tabButtonKey: string }) {
         />
         <Area dataKey="value_area" fill="#84d884" stroke="#8f9908" type="monotone" yAxisId="Area" />
         <Bar barSize={20} dataKey="value_bar" fill="#413ea0" offset={40} yAxisId="Bar" />
-        <Tooltip />
+        <Tooltip content={<CustomTooltip />} />
         <Legend />
       </ComposedChart>
     </S_Container>
