@@ -39,6 +39,7 @@ function Chart({ tabButtonKey }: { tabButtonKey: string }) {
         {idArr.map((v) => (
           <S_Button
             key={v}
+            $selected={v === selectedButton}
             id={v}
             type="button"
             onClick={() => {
@@ -110,7 +111,9 @@ const S_ButtonList = styled.div`
   gap: 8px;
 `
 
-const S_Button = styled.button`
+const S_Button = styled.button<{ $selected: boolean }>`
+  color: ${({ $selected }) => ($selected ? 'white' : 'black')};
+  background-color: ${({ $selected }) => ($selected ? 'blue' : 'white')};
   padding: 0.25rem 0.5em;
   font-size: 1rem;
 `
