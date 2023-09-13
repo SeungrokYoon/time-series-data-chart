@@ -79,7 +79,13 @@ function Chart({ tabButtonKey }: { tabButtonKey: string }) {
           {composeChartData.map((entry, index) => {
             const selected = entry.id === selectedButton
             return (
-              <Cell key={`cell-${index}`} fill={entry.id === selectedButton ? 'blue' : 'yellow'} />
+              <Cell
+                key={`cell-${index}`}
+                fill={selected ? 'blue' : 'yellow'}
+                onClick={() => {
+                  setSelectedButton(entry.id)
+                }}
+              />
             )
           })}
         </Bar>
